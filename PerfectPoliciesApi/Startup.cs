@@ -29,8 +29,8 @@ namespace PerfectPoliciesApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PerfectPoliciesContext>(c => c.UseSqlServer(Configuration.GetConnectionString("PerfectPoliciesSqlServer")));
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
@@ -51,6 +51,8 @@ namespace PerfectPoliciesApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -1,14 +1,22 @@
-﻿namespace PerfectPoliciesApi.Entities
+﻿using System.Collections.Generic;
+
+namespace PerfectPoliciesApi.Entities
 {
     public class Question
     {
-        public int questionId { get; set; }
-        public string topic { get; set; }
-        public string answer { get; set; }
-        public string ansA { get; set; }
-        public string ansB { get; set; }
-        public string ansC { get; set; }
-        public string ansD { get; set; }
-        public string ansE { get; set; }
+        // Primary Key
+        public int QuestionId { get; set; }
+
+        // Attributes
+        public string Topic { get; set; }
+        public string QuestionText { get; set; }
+        public string? Image { get; set; }
+
+        // Foreign Key
+        public int QuizId { get; set; }
+
+        // Navigation Property
+        public Quiz Quiz { get; set;  }
+        public ICollection<Option> Options { get; set; }
     }
 }

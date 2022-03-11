@@ -12,53 +12,46 @@ namespace PerfectPoliciesApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QuestionController : ControllerBase
+    public class QuizController : ControllerBase
     {
         #region Setup
 
         private readonly PerfectPoliciesContext _context;
 
-        public QuestionController(PerfectPoliciesContext context)
+        public QuizController(PerfectPoliciesContext context)
         {
             _context = context;
         }
 
         #endregion
 
-
-        // GET: api/<QuestionController>
+        // GET: api/<QuizController>
         [HttpGet]
-        public IEnumerable<Question> Get()
+        public IEnumerable<Quiz> Get()
         {
-
-            return _context.Questions.Include(c => c.Options);
+            return _context.Quizzes.Include(c => c.Questions);
         }
 
-        // GET api/<QuestionController>/5
+        // GET api/<QuizController>/5
         [HttpGet("{id}")]
-        public ActionResult<Question> Get(int id)
+        public string Get(int id)
         {
-            var question = _context.Questions.Find(id);
-            if (question == null)
-            {
-                return NotFound();
-            }
-            return question;
+            return "value";
         }
 
-        // POST api/<QuestionController>
+        // POST api/<QuizController>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/<QuestionController>/5
+        // PUT api/<QuizController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<QuestionController>/5
+        // DELETE api/<QuizController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
