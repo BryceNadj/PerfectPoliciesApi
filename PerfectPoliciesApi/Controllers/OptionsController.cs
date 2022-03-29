@@ -12,78 +12,76 @@ namespace PerfectPoliciesApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QuestionController : ControllerBase
+    public class OptionsController : ControllerBase
     {
         #region Setup
 
         private readonly PerfectPoliciesContext _context;
 
-        public QuestionController(PerfectPoliciesContext context)
+        public OptionsController(PerfectPoliciesContext context)
         {
             _context = context;
         }
 
         #endregion
 
-
-        // GET: api/<QuestionController>
+        // GET: api/<OptionsController>
         [HttpGet]
-        public IEnumerable<Question> Get()
+        public IEnumerable<Option> Get()
         {
-            return _context.Questions; //.Include(c => c.Options);
+            return _context.Options;
         }
-
-        // GET api/<QuestionController>/5
+        // GET api/<OptionsController>/5
         [HttpGet("{id}")]
-        public ActionResult<Question> Get(int id)
+        public ActionResult<Option> Get(int id)
         {
-            var question = _context.Questions.Find(id);
-            if (question == null)
+            var option = _context.Options.Find(id);
+            if (option == null)
             {
                 return NotFound();
             }
-            return question;
+            return option;
         }
 
-        // POST api/<QuestionController>
+        // POST api/<OptionsController>
         [HttpPost]
-        public ActionResult<Question> Post(Question question)
+        public ActionResult<Option> Post(Option option)
         {
-            if (question == null)
+            if (option == null)
             {
                 return BadRequest();
             }
 
-            _context.Questions.Add(question);
+            _context.Options.Add(option);
             _context.SaveChanges();
 
-            return CreatedAtAction("Post", question);
+            return CreatedAtAction("Post", option);
         }
 
-        // PUT api/<QuestionController>/5
+        // PUT api/<OptionsController>/5
         [HttpPut("{id}")]
-        public ActionResult<Question> Put(int id, [FromBody] Question question)
+        public ActionResult<Option> Put(int id, [FromBody] Option option)
         {
-            if (id != question.QuizId)
+            if (id != option.OptionId)
             {
                 return BadRequest();
             }
 
-            _context.Questions.Update(question);
+            _context.Options.Update(option);
             _context.SaveChanges();
 
-            return Ok(question);
+            return Ok(option);
         }
 
-        // DELETE api/<QuestionController>/5
+        // DELETE api/<OptionsController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var question = _context.Questions.Find(id);
+            var option = _context.Options.Find(id);
 
-            if (question != null)
+            if (option != null)
             {
-                _context.Questions.Remove(question);
+                _context.Options.Remove(option);
                 _context.SaveChanges();
                 return Ok();
             }
