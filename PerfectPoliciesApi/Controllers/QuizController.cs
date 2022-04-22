@@ -29,7 +29,7 @@ namespace PerfectPoliciesApi.Controllers
         [HttpGet]
         public IEnumerable<Quiz> Get()
         {
-            return _context.Quizzes.Include(c => c.Questions);
+            return _context.Quizzes;// .Include(c => c.Questions);
         }
 
         // GET api/<QuizController>/5

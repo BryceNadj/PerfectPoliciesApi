@@ -16,6 +16,8 @@ namespace PerfectPoliciesApi.Entities
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Option> Options { get; set; }
 
+        public DbSet<UserInfo> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Quiz>().HasData(
@@ -23,7 +25,7 @@ namespace PerfectPoliciesApi.Entities
                 );
                 
             builder.Entity<Question>().HasData(
-                new Question { QuestionId = 1,  QuestionText = "How do you spell \"Red\"?", Image = null, Topic = "English", QuizId = 1 },
+                new Question { QuestionId = 1,  QuestionText = "How do you spell 'Red'?", Image = null, Topic = "English", QuizId = 1 },
                 new Question { QuestionId = 2, QuestionText = "What colour is a carrot?", Image = null, Topic = "English", QuizId = 1 }
                 );
 
@@ -36,6 +38,10 @@ namespace PerfectPoliciesApi.Entities
                 new Option { OptionId = 5, OptionText = "Orange", Order = "B", IsCorrect = true, QuestionId = 2 },
                 new Option { OptionId = 6, OptionText = "Pineapple", Order = "C", IsCorrect = false, QuestionId = 2 },
                 new Option { OptionId = 7, OptionText = "I don't know", Order = "D", IsCorrect = false, QuestionId = 2 }
+                );
+
+            builder.Entity<UserInfo>().HasData(
+                new UserInfo { UserInfoID = 1, Username = "Shaun", Password = "abc_1234" }
                 );
 
         }

@@ -25,7 +25,7 @@ namespace PerfectPoliciesApi.Controllers
 
         #endregion
 
-
+        #region CRUD Endpoints
         // GET: api/<QuestionController>
         [HttpGet]
         public IEnumerable<Question> Get()
@@ -90,5 +90,22 @@ namespace PerfectPoliciesApi.Controllers
 
             return NotFound();
         }
+        #endregion
+
+        #region Custom Endpoints
+
+        /// <summary>
+        /// Get all Questions for a given Quiz
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("QuestionsByQuizId")]
+        public ActionResult QuestionsByQuizId(int id)
+        {
+            return Ok(_context.Questions.Where(c => c.QuizId == id));
+        }
+
+        #endregion
     }
 }
