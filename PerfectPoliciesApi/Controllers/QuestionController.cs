@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PerfectPoliciesApi.DTO;
 using PerfectPoliciesApi.Entities;
 using System;
 using System.Collections.Generic;
@@ -47,17 +48,28 @@ namespace PerfectPoliciesApi.Controllers
 
         // POST api/<QuestionController>
         [HttpPost]
-        public ActionResult<Question> Post(Question question)
+        public ActionResult<Question> Post(QuestionCreate question)
         {
             if (question == null)
             {
                 return BadRequest();
             }
 
-            _context.Questions.Add(question);
+            // convert the DTO to an entity
+            Question createdQuestion = new Question()
+            {
+                Topic = question.Topic,
+                QuestionText = question.QuestionText,
+                Image = question.Image,
+                QuizId = question.QuizId
+            };
+
+            // Save the entity
+            _context.Questions.Add(createdQuestion);
+
             _context.SaveChanges();
 
-            return CreatedAtAction("Post", question);
+            return CreatedAtAction("Post", createdQuestion);
         }
 
         // PUT api/<QuestionController>/5
