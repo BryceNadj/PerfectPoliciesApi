@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PerfectPoliciesApi.DTO;
 using PerfectPoliciesApi.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,13 @@ namespace PerfectPoliciesApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OptionsController : ControllerBase
+    public class OptionController : ControllerBase
     {
         #region Setup
 
         private readonly PerfectPoliciesContext _context;
 
-        public OptionsController(PerfectPoliciesContext context)
+        public OptionController(PerfectPoliciesContext context)
         {
             _context = context;
         }
@@ -31,6 +32,7 @@ namespace PerfectPoliciesApi.Controllers
         {
             return _context.Options;
         }
+
         // GET api/<OptionsController>/5
         [HttpGet("{id}")]
         public ActionResult<Option> Get(int id)
@@ -45,17 +47,28 @@ namespace PerfectPoliciesApi.Controllers
 
         // POST api/<OptionsController>
         [HttpPost]
-        public ActionResult<Option> Post(Option option)
+        public ActionResult<Option> Post(OptionCreate option)
         {
             if (option == null)
             {
                 return BadRequest();
             }
 
-            _context.Options.Add(option);
+            // convert the DTO to an entity
+            Option createdOption = new Option()
+            {
+                OptionText = option.OptionText,
+                Order = option.Order,
+                IsCorrect = option.IsCorrect,
+                QuestionId = option.QuestionId
+            };
+
+            // Save the entity
+            _context.Options.Add(createdOption);
+
             _context.SaveChanges();
 
-            return CreatedAtAction("Post", option);
+            return CreatedAtAction("Post", createdOption);
         }
 
         // PUT api/<OptionsController>/5
