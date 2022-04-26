@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PerfectPoliciesApi.DTO;
 using PerfectPoliciesApi.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,6 +45,7 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // POST api/<QuestionController>
+        [Authorize]
         [HttpPost]
         public ActionResult<Question> Post(QuestionCreate question)
         {
@@ -73,6 +72,7 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // PUT api/<QuestionController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public ActionResult<Question> Put(int id, [FromBody] Question question)
         {
@@ -88,6 +88,7 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // DELETE api/<QuestionController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {

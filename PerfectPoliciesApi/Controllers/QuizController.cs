@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PerfectPoliciesApi.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -45,6 +42,7 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // POST api/<QuizController>
+        [Authorize]
         [HttpPost]
         public ActionResult<Quiz> Post(Quiz quiz)
         {
@@ -60,6 +58,7 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // PUT api/<QuizController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public ActionResult<Quiz> Put(int id, [FromBody] Quiz quiz)
         {
@@ -75,6 +74,7 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // DELETE api/<QuizController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {

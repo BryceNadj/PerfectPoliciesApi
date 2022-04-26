@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PerfectPoliciesApi.DTO;
 using PerfectPoliciesApi.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -46,6 +43,7 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // POST api/<OptionsController>
+        [Authorize]
         [HttpPost]
         public ActionResult<Option> Post(OptionCreate option)
         {
@@ -72,6 +70,7 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // PUT api/<OptionsController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public ActionResult<Option> Put(int id, [FromBody] Option option)
         {
@@ -87,6 +86,7 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // DELETE api/<OptionsController>/5
+        [Authorize]
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
