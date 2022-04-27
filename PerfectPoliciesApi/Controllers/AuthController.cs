@@ -9,7 +9,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PerfectPoliciesApi.Controllers
 {
@@ -19,7 +18,7 @@ namespace PerfectPoliciesApi.Controllers
     {
         // Setup (Dependency Injection)
             // Access to appsettings.json (Iconfiguration)
-            // Access to database (ClassTrackerContext)
+            // Access to database (PerfectPoliciesContext)
 
         public IConfiguration _config;
         public PerfectPoliciesContext _context;
@@ -33,7 +32,6 @@ namespace PerfectPoliciesApi.Controllers
         // Private method - Get user from database
             // return user if found (and password matches)
             // return null if not
-
 
         private UserInfo GetUser(string userName, string passWord)
         {
