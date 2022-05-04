@@ -47,6 +47,34 @@ namespace PerfectPoliciesApi.Controllers
             return null;
         }
 
+
+        // POST api/<AuthController>
+        [HttpPost]
+        public ActionResult<UserInfo> Post(UserInfo userInfo)
+        {
+            if (userInfo == null)
+            {
+                return BadRequest();
+            }
+            //try
+            //{
+            // UserInfo user = _context.Users.FirstOrDefault(u => u.Username == userInfo.Username);
+            if (_context.Users.FirstOrDefault(u => u.Username == userInfo.Username) != null)
+            {
+                // If this succeeds, that means the username already exists
+                return BadRequest();
+            }
+            
+            //}
+            //catch (Exception)
+            //{ /* Username DOESN'T exist */ }
+
+            _context.Users.Add(userInfo);
+            _context.SaveChanges();
+
+            return CreatedAtAction("Post", userInfo);
+        }
+
         // Generate a Token for an existing user
         [HttpPost]
         [Route("GenerateToken")]
