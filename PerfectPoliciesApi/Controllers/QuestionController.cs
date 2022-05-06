@@ -76,7 +76,7 @@ namespace PerfectPoliciesApi.Controllers
         [HttpPut("{id}")]
         public ActionResult<Question> Put(int id, [FromBody] Question question)
         {
-            if (id != question.QuizId)
+            if (id != question.QuestionId)
             {
                 return BadRequest();
             }
