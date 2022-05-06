@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using PerfectPoliciesApi.Entities;
 using System.Collections.Generic;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace PerfectPoliciesApi.Controllers
 {
     [Route("api/[controller]")]
@@ -12,7 +10,6 @@ namespace PerfectPoliciesApi.Controllers
     public class QuizController : ControllerBase
     {
         #region Setup
-
         private readonly PerfectPoliciesContext _context;
 
         public QuizController(PerfectPoliciesContext context)
