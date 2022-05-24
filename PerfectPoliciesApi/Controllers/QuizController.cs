@@ -20,6 +20,10 @@ namespace PerfectPoliciesApi.Controllers
         #endregion
 
         // GET: api/<QuizController>
+        /// <summary>
+        /// Receives a HTTP Get request to get all quizzes
+        /// </summary>
+        /// <returns>A list of quizzes</returns>
         [HttpGet]
         public IEnumerable<Quiz> Get()
         {
@@ -27,6 +31,11 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // GET api/<QuizController>/5
+        /// <summary>
+        /// Receives an HTTP Get request to retrive one quiz with a specified Id
+        /// </summary>
+        /// <param name="id">The Id of the quiz to return, if it exists</param>
+        /// <returns>A quiz entity</returns>
         [HttpGet("{id}")]
         public ActionResult<Quiz> Get(int id)
         {
@@ -39,6 +48,10 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // POST api/<QuizController>
+        /// <summary>
+        /// Sends an HTTP Post request with a Quiz Entity
+        /// </summary>
+        /// <param name="quiz">The quiz to add to the database</param>
         [Authorize]
         [HttpPost]
         public ActionResult<Quiz> Post(Quiz quiz)
@@ -55,6 +68,11 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // PUT api/<QuizController>/5
+        /// <summary>
+        /// Receives an HTTP Put request to update a Quiz entity
+        /// </summary>
+        /// <param name="id">The Id of the quiz to update</param>
+        /// <param name="quiz">The entity to replace the old quiz</param>
         [Authorize]
         [HttpPut("{id}")]
         public ActionResult<Quiz> Put(int id, [FromBody] Quiz quiz)
@@ -71,6 +89,10 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // DELETE api/<QuizController>/5
+        /// <summary>
+        /// Receives an HTTP Delete request to remove a quiz entity from the database
+        /// </summary>
+        /// <param name="id">The Id of the quiz to remove</param>
         [Authorize]
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)

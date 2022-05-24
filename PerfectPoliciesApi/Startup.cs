@@ -1,14 +1,17 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
+using System.Text;
+using System.Reflection;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PerfectPoliciesApi.Entities;
-using System.Text;
 
 namespace PerfectPoliciesApi
 {
@@ -46,6 +49,11 @@ namespace PerfectPoliciesApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PerfectPoliciesApi", Version = "v1" });
+
+                var workingDirectory = AppContext.BaseDirectory;
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+
+                c.IncludeXmlComments(Path.Combine(workingDirectory, xmlFile));
             });
         }
 

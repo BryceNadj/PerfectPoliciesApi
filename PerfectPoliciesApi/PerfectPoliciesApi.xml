@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PerfectPoliciesApi</name>
+    </assembly>
+    <members>
+        <member name="M:PerfectPoliciesApi.Controllers.QuestionController.QuestionsByQuizId(System.Int32)">
+            <summary>
+            Get all Questions for a given Quiz
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PerfectPoliciesApi.Controllers.QuizController.Get">
+            <summary>
+            Receives a HTTP Get request to get all quizzes
+            </summary>
+            <returns>A list of quizzes</returns>
+        </member>
+        <member name="M:PerfectPoliciesApi.Controllers.QuizController.Get(System.Int32)">
+            <summary>
+            Receives an HTTP Get request to retrive one quiz with a specified Id
+            </summary>
+            <param name="id">The Id of the quiz to return, if it exists</param>
+            <returns>A quiz entity</returns>
+        </member>
+        <member name="M:PerfectPoliciesApi.Controllers.QuizController.Post(PerfectPoliciesApi.Entities.Quiz)">
+            <summary>
+            Sends an HTTP Post request with a Quiz Entity
+            </summary>
+            <param name="quiz">The quiz to add to the database</param>
+        </member>
+        <member name="M:PerfectPoliciesApi.Controllers.QuizController.Put(System.Int32,PerfectPoliciesApi.Entities.Quiz)">
+            <summary>
+            Receives an HTTP Put request to update a Quiz entity
+            </summary>
+            <param name="id">The Id of the quiz to update</param>
+            <param name="quiz">The entity to replace the old quiz</param>
+        </member>
+        <member name="M:PerfectPoliciesApi.Controllers.QuizController.Delete(System.Int32)">
+            <summary>
+            Receives an HTTP Delete request to remove a quiz entity from the database
+            </summary>
+            <param name="id">The Id of the quiz to remove</param>
+        </member>
+    </members>
+</doc>
