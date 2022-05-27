@@ -53,7 +53,7 @@ namespace PerfectPoliciesApi
                 var workingDirectory = AppContext.BaseDirectory;
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
-                c.IncludeXmlComments(Path.Combine(workingDirectory, xmlFile));
+                //c.IncludeXmlComments(Path.Combine(workingDirectory, xmlFile));
             });
         }
 
