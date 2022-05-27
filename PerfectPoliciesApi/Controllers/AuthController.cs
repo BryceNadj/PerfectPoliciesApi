@@ -62,7 +62,7 @@ namespace PerfectPoliciesApi.Controllers
             if (_context.Users.FirstOrDefault(u => u.Username == userInfo.Username) != null)
             {
                 // If this succeeds, that means the username already exists
-                return BadRequest();
+                return BadRequest("Username already exists");
             }
             
             //}
