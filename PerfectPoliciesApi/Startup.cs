@@ -27,12 +27,13 @@ namespace PerfectPoliciesApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Main VM
-            // services.AddDbContext<PerfectPoliciesContext>(c => c.UseSqlServer(Configuration.GetConnectionString("PerfectPoliciesSqlServer")));
-
+#if TAFE_VM
             // Tafe VM
             services.AddDbContext<PerfectPoliciesContext>(c => c.UseSqlServer(Configuration.GetConnectionString("TafeVmServer")));
-
+#else
+            // Main VM
+            services.AddDbContext<PerfectPoliciesContext>(c => c.UseSqlServer(Configuration.GetConnectionString("PerfectPoliciesSqlServer")));
+#endif
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opts =>
             {
                 opts.RequireHttpsMetadata = false;
@@ -57,11 +58,7 @@ namespace PerfectPoliciesApi
                 var workingDirectory = AppContext.BaseDirectory;
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
-<<<<<<< HEAD
-                //c.IncludeXmlComments(Path.Combine(workingDirectory, xmlFile));
-=======
                 // c.IncludeXmlComments(Path.Combine(workingDirectory, xmlFile));
->>>>>>> 72834038fd46208e881dc0e52196b1e72a6cf00e
             });
         }
 

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>87a110ad-10ed-438a-872a-cfffc2e5fb30</UserSecretsId>
+    <Configurations>Debug;Release;Tafe VM</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
