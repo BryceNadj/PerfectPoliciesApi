@@ -27,7 +27,8 @@ namespace PerfectPoliciesApi.Controllers
             var questionOptionCountList = questions.Select(c => new OptionCountForQuestion
             {
                 QuestionText = c.QuestionText,
-                OptionCount = c.Options.Count
+                OptionCount = c.Options.Count,
+                QuizId = c.QuizId
             }).ToList();
 
             // Question   - Text

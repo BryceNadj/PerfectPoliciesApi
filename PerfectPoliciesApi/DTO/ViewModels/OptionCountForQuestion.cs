@@ -3,7 +3,7 @@
     public class OptionCountForQuestion
     {
         public string QuestionText { get; set; }
-
         public int OptionCount { get; set; }
+        public int QuizId { get; set; }
     }
 }
