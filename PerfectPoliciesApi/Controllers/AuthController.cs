@@ -19,7 +19,6 @@ namespace PerfectPoliciesApi.Controllers
         // Setup (Dependency Injection)
             // Access to appsettings.json (Iconfiguration)
             // Access to database (PerfectPoliciesContext)
-
         public IConfiguration _config;
         public PerfectPoliciesContext _context;
 
@@ -29,10 +28,12 @@ namespace PerfectPoliciesApi.Controllers
             _context = context;
         }
 
-        // Private method - Get user from database
-            // return user if found (and password matches)
-            // return null if not
-
+        /// <summary>
+        /// Gets a user from the database
+        /// </summary>
+        /// <param name="userName">The username for the user</param>
+        /// <param name="passWord">The password for the user</param>
+        /// <returns>The user if it was found</returns>
         private UserInfo GetUser(string userName, string passWord)
         {
             UserInfo user = _context.Users.FirstOrDefault(u => u.Username == userName);
@@ -49,6 +50,10 @@ namespace PerfectPoliciesApi.Controllers
 
 
         // POST api/<AuthController>
+        /// <summary>
+        /// Creates a new user. Will fail if a user already exists with the specified username
+        /// </summary>
+        /// <param name="userInfo">The User to create</param>
         [HttpPost]
         public ActionResult<UserInfo> Post(UserInfo userInfo)
         {
@@ -76,6 +81,11 @@ namespace PerfectPoliciesApi.Controllers
         }
 
         // Generate a Token for an existing user
+        /// <summary>
+        /// Generates a Token for an existing user
+        /// </summary>
+        /// <param name="_userData">The userdata to create a token with</param>
+        /// <returns>The token via JSON</returns>
         [HttpPost]
         [Route("GenerateToken")]
         public IActionResult GenerateToken(UserInfo _userData)

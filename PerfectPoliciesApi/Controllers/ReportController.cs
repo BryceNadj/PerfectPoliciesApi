@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using PerfectPoliciesApi.DTO.ViewModels;
 using PerfectPoliciesApi.Entities;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PerfectPoliciesApi.Controllers
 {
@@ -19,6 +18,10 @@ namespace PerfectPoliciesApi.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Gets the number of options for all of the questions in the database
+        /// </summary>
+        /// <returns>An OptionCountForQuestion object containing each question, its number of options, and the quiz id</returns>
         [HttpGet("OptionQuestionCount")]
         public IActionResult OptionQuestionCount()
         {
