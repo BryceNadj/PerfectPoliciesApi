@@ -45,8 +45,8 @@ namespace PerfectPoliciesApi.Controllers
                 return NotFound();
             }
             return quiz;
-        }
-
+        }        
+        
         // POST api/<QuizController>
         /// <summary>
         /// Sends an HTTP Post request with a Quiz Entity

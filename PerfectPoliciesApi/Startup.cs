@@ -1,15 +1,15 @@
 using System;
-using System.IO;
 using System.Text;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PerfectPoliciesApi.Entities;
 
@@ -63,14 +63,19 @@ namespace PerfectPoliciesApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PerfectPoliciesContext context)
         {
-            if (env.IsDevelopment())
+            if (!context.Database.GetService<IRelationalDatabaseCreator>().HasTables())
             {
+                context.Database.Migrate();
+            }
+
+            //if (env.IsDevelopment())
+            //{
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PerfectPoliciesApi v1"));
-            }
+            //}
 
             app.UseHttpsRedirection();
             app.UseRouting();
